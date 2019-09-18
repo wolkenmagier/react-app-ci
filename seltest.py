@@ -47,8 +47,8 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		# Go to google.com
 		driver.get('http://localhost:8080')
-		print("Title:",driver.title)
 		time.sleep(3)
+		print("Title:",driver.title)
 		assert "React App" in driver.title
 
 
