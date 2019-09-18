@@ -47,7 +47,6 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		# Go to google.com
 		driver.get('http://localhost:8080')
-		hing
 		assert "React App" not in driver.title
 		time.sleep(1)
 
