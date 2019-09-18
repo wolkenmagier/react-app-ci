@@ -18,7 +18,7 @@ class App extends Component {
           Here is an example of using ENV variables in the app:
         </p>
 	<p id="sample-item">
-          text in the item
+          text in the item falsch
         </p>
         <p className="App-intro">
         Environment: {Config.environment}<br />
