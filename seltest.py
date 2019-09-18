@@ -47,8 +47,10 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		# Go to google.com
 		driver.get('http://localhost:8080')
+		print("Title:",driver.title)
 		time.sleep(3)
 		assert "React App" in driver.title
+
 
 		# Take a screenshot of the results
 	# Anything declared in tearDown will be executed for all test cases
