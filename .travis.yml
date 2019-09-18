@@ -18,6 +18,7 @@ before_install: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
   - docker build -t app .
   - docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
   - docker ps -a
+  - pip install -r requirements.txt
 
 script:
   - whereis google-chrome-stable
