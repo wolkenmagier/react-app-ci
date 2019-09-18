@@ -1,12 +1,25 @@
+dist: trusty
+sudo: required
+
 language: python
 
 services:
   - docker
 
+addons: # get google-chrome-stable
+  chrome: stable
+install: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
+  - wget -N http://chromedriver.storage.googleapis.com/2.30/chromedriver_linux64.zip -P ~/
+  - unzip ~/chromedriver_linux64.zip -d ~/
+  - rm ~/chromedriver_linux64.zip
+  - sudo mv -f ~/chromedriver /usr/local/share/
+  - sudo chmod +x /usr/local/share/chromedriver
+  - sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
 before_install:
 - docker build -t app .
-- docker run -d -p 3000:3000 app
+- docker run --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
 - docker ps -a
 
 script:
-- bundle exec rake test
+  - whereis google-chrome-stable
+  - whereis chromedriver
