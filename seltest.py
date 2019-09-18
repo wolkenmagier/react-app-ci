@@ -78,7 +78,8 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		
 		# Add the mobile emulation to the chrome options variable
 		chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
-		
+		chrome_options.add_argument('--headless')
+
 		# Create driver, pass it the path to the chromedriver file and the special configurations you want to run
 		self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=chrome_options)
 
@@ -94,7 +95,7 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		self.assertIn("Google", driver.title)
 
 		# Pauses the screen for 5 seconds so we have time to confirm it arrived at the right page
-		time.sleep(5) 
+		time.sleep(1) 
 
 		# Find and select the search box element on the page
 		search_box = driver.find_element_by_name('q')
@@ -112,7 +113,7 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		#search_box.send_keys(Keys.RETURN)
 
 		# Another pause so we can see what's going on
-		time.sleep(5)
+		time.sleep(1)
 
 		# Take a screenshot of the results
 		driver.save_screenshot('screenshot-deskto-chrome.png')
