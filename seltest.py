@@ -46,8 +46,9 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		driver = self.driver
 
 		# Go to google.com
+
 		driver.get('http://localhost:8080')
-		time.sleep(5)
+		driver.implicitly_wait(30)
 		text = driver.find_element_by_id("sample-item").text
 		
 		print("Text:",text)
