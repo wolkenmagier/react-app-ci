@@ -46,7 +46,7 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		driver = self.driver
 
 		# Go to google.com
-		driver.get('http://www.google.com')
+		driver.get('http://localhost:8080')
 		
 		# A test to ensure the page has keyword Google in the page title
 		self.assertIn("Google", driver.title)
