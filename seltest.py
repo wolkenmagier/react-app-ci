@@ -47,8 +47,9 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		# Go to google.com
 		driver.get('http://localhost:8080')
-		text = driver.find_element_by_id("sample-item").text
 		time.sleep(3)
+		text = driver.find_element_by_id("sample-item").text
+		
 		print("Text:",text)
 		self.assertEqual("text in the item", text)
 
