@@ -25,6 +25,6 @@ before_install: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
 script:
   - whereis google-chrome-stable
   - whereis chromedriver
-  - which /usr/local/bin/chromedriver
-  - which /usr/bin/google-chrome-stable
+  - /usr/local/bin/chromedriver --version
+  - /usr/bin/google-chrome-stable --version
   - python seltest.py
