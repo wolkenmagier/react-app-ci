@@ -47,29 +47,8 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		# Go to google.com
 		driver.get('http://localhost:8080')
-		
-		# A test to ensure the page has keyword Google in the page title
-		self.assertIn("Google", driver.title)
-
-		# Pauses the screen for 5 seconds so we have time to confirm it arrived at the right page
-		time.sleep(1) 
-
-		# Find and select the search box element on the page
-		search_box = driver.find_element_by_name('q')
-
-		# Enter text into the search box
-		search_box.send_keys('Devin Mancuso')
-
-		# Make sure the results page returned something
-		assert "No results found." not in driver.page_source
-
-		# Submit the search box form
-		search_box.submit() 
-
-		# Can also use Keys function to submit
-		#search_box.send_keys(Keys.RETURN)
-
-		# Another pause so we can see what's going on
+		hing
+		assert "React App" not in driver.title
 		time.sleep(1)
 
 		# Take a screenshot of the results
