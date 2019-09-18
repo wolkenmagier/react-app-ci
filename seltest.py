@@ -73,8 +73,6 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		time.sleep(1)
 
 		# Take a screenshot of the results
-		driver.save_screenshot('screenshot-deskto-chrome.png')
-
 	# Anything declared in tearDown will be executed for all test cases
 	def tearDown(self):
 		# Close the browser. 
