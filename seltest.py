@@ -47,9 +47,10 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		# Go to google.com
 		driver.get('http://localhost:8080')
+		text = driver.find_element_by_id("sample-item").text
 		time.sleep(3)
-		print("Title:",driver.title)
-		assert "React App" in driver.title
+		print("Text:",text)
+		self.assertEqual("text in the item", text)
 
 
 		# Take a screenshot of the results

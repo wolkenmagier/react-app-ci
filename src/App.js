@@ -17,6 +17,9 @@ class App extends Component {
         <p className="App-intro">
           Here is an example of using ENV variables in the app:
         </p>
+	<p id="sample-item">
+          text in the item
+        </p>
         <p className="App-intro">
         Environment: {Config.environment}<br />
         Timezone: {Config.timezone}
