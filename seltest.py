@@ -47,8 +47,9 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		# Go to google.com
 		driver.get('http://localhost:8080')
-		assert "React App" not in driver.title
 		time.sleep(1)
+		assert "React App" not in driver.title
+		
 
 		# Take a screenshot of the results
 	# Anything declared in tearDown will be executed for all test cases
