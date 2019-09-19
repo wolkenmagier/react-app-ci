@@ -5,19 +5,16 @@ jobs:
       - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
+      - setup_remote_docker
+      - run: docker build -t app .
+
+     # deploy the image
+     - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
       - run:
           name: Install requirements
           command: |
-            sudo pip install -r requirements.txt
-            #sudo wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
-            #sudo unzip ~/chromedriver_linux64.zip -d ~/
-            #sudo rm ~/chromedriver_linux64.zip
-            #sudo mv -f ~/chromedriver /usr/local/share/
-            #sudo chmod +x /usr/local/share/chromedriver
-            #sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-            sudo docker build -t app .
-            sudo docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
-            sudo docker ps -a
-            sudo export DISPLAY=:99.0
-            sudo sh -e /etc/init.d/xvfb start
-            sudo sleep 15                  
+            sudo pip install -r requirements.txt 
+            #sudo docker ps -a
+            #sudo export DISPLAY=:99.0
+            #sudo sh -e /etc/init.d/xvfb start
+            #sudo sleep 15                  
