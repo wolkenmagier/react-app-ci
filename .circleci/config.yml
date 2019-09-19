@@ -6,63 +6,63 @@ jobs:
     steps:
       - checkout
       - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             pip install -r requirements.txt                                                      
       - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             unzip ~/chromedriver_linux64.zip -d ~/
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             rm ~/chromedriver_linux64.zip
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             sudo mv -f ~/chromedriver /usr/local/share/
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             sudo chmod +x /usr/local/share/chromedriver
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             docker build -t app .
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
        - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             docker ps -a
         - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             export DISPLAY=:99.0
         - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             sh -e /etc/init.d/xvfb start
         - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             sleep 15
         - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             xx
         - run:
-      	  name:
-      	  command: |
+          name:
+          command: |
             xx
         
