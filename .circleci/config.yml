@@ -7,14 +7,15 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: docker build -t app .
-
-     # deploy the image
+      - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
+      - run: sudo docker ps -a
+      - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
       - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
       - run:
           name: Install requirements
           command: |
             sudo pip install -r requirements.txt 
-            #sudo docker ps -a
-            #sudo export DISPLAY=:99.0
-            #sudo sh -e /etc/init.d/xvfb start
-            #sudo sleep 15                  
+            sudo export DISPLAY=:99.0
+            sudo sh -e /etc/init.d/xvfb start
+            sudo sleep 15
+            python seltest.py               
