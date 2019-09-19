@@ -9,11 +9,8 @@ jobs:
       - run: docker build -t app .
       - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
       - run: docker ps -a
-      - run:
-          name: Install requirements
-          command: |
-            pip install -r requirements.txt 
-            export DISPLAY=:99.0
-            sh -e /etc/init.d/xvfb start
-            sleep 15
-            python seltest.py               
+      - run: sudo pip install -r requirements.txt
+      - run: export DISPLAY=:99.0
+      - run: sh -e /etc/init.d/xvfb start
+      - run: sleep 15
+      - run: python seltest.py
