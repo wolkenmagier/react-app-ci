@@ -8,7 +8,7 @@ jobs:
       - setup_remote_docker
       - run: docker build -t app .
       - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
-      - run: sudo docker ps -a
+      - run: docker ps -a
       - run:
           name: Install requirements
           command: |
