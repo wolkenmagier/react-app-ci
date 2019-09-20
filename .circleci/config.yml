@@ -6,6 +6,13 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
+      - run: wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
+      - run: ~/chromedriver_linux64.zip -d ~/
+      - run: rm ~/chromedriver_linux64.zip
+      - run: sudo mv -f ~/chromedriver /usr/local/share/
+      - run: sudo chmod +x /usr/local/share/chromedriver
+      - run: sudo rm /usr/local/bin/chromedriver
+      - run: sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
       - run: docker build -t app .
       - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
       - run: docker ps -a
