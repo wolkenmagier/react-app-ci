@@ -21,7 +21,7 @@ jobs:
 
       #- run: docker build -t app .
       #- run: docker run -d --name app -p 5000:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
-      - run: echo DOCKER_HOST
+      - run: echo $DOCKER_HOST
       - run:
           name: Start container and verify it's working
           command: |
