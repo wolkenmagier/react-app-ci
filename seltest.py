@@ -49,7 +49,10 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		driver.get('http://localhost:8080')
 		driver.implicitly_wait(30)
-		text = driver.find_element_by_id("sample-item").text
+		elem = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, '//*[@id=\"sample-item\"]'))
+            )
+		text = elem.text
 		
 		print("Text:",text)
 		self.assertEqual("text in the item", text)
