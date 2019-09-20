@@ -26,7 +26,8 @@ jobs:
           name: Start container and verify it's working
           command: |
             set -x
-            sudo docker-compose up -d
+            sudo service docker start && docker-compose up -d -e DOCKER_HOST=$DOCKER_HOST
+
             # docker-compose will start 2 containers, the one with service will be named `contacts`
             # we start another container with curl in the same network as `contacts`, this way we have
             # all exposed ports from `contacts` available on `localhost` in this new container
