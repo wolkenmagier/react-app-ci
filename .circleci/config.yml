@@ -5,6 +5,7 @@ jobs:
       - image: circleci/python:3.6.2-stretch-browsers
     steps:
       - checkout
+      - setup_remote_docker
       - run: wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
       - run: unzip ~/chromedriver_linux64.zip -d ~/
       - run: rm ~/chromedriver_linux64.zip
@@ -19,13 +20,18 @@ jobs:
       - run: sudo apt-get install google-chrome-stable
 
       - run: docker build -t app .
-      - run: docker run -d --name app -p 5000:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
-      
+      #- run: docker run -d --name app -p 5000:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
+      - run:
+          name: Install Docker Compose
+          command: |
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+            
       - run: sudo pip install -r requirements.txt
       - run: export DISPLAY=:99.0
       - run: sleep 15
       - run: sudo netstat -ltnp
-      - run: npm install
       - run: docker ps -a
       - run: curl http://localhost:5000
       - run: google-chrome --version

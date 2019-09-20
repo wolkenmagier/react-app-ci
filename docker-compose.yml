@@ -1,0 +1,9 @@
+version: "2"
+
+services:
+  contacts:
+    build: .
+    container_name: app
+    ports:
+      - "8080:5000"
+
