@@ -2,7 +2,8 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.2-stretch-browsers
+      machine: true # Use a Linux VM instead of docker environment
+      working_directory: ~/repo # Default working directory, where your project will be cloned
     steps:
       - checkout
       - setup_remote_docker
