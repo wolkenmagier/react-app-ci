@@ -19,14 +19,8 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install google-chrome-stable
 
-      - run: docker build -t app .
+      #- run: docker build -t app .
       #- run: docker run -d --name app -p 5000:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
-      - run:
-          name: Install Docker Compose
-          command: |
-            set -x
-            sudo curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-            sudo chmod +x /usr/local/bin/docker-compose
 
       - run:
           name: Start container and verify it's working
