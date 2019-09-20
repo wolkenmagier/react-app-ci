@@ -13,6 +13,13 @@ from selenium.webdriver.common.keys import Keys
 # For providing custom configurations for Chrome to run
 from selenium.webdriver.chrome.options import Options
 
+import requests
+
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.common.by import By
+
+from selenium.webdriver.support.ui import WebDriverWait
 
 # --------------------------------------
 # Provide a class for the unit test case
