@@ -1,0 +1,40 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6.2-stretch-browsers
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run: wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
+      - run: unzip ~/chromedriver_linux64.zip -d ~/
+      - run: rm ~/chromedriver_linux64.zip
+      - run: sudo mv -f ~/chromedriver /usr/local/share/
+      - run: sudo chmod +x /usr/local/share/chromedriver
+      - run: sudo rm /usr/local/bin/chromedriver
+      - run: sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
+      - run: sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+      - run: sudo sh -c 'echo ""deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"" >> /etc/apt/sources.list.d/google-chrome.list'
+      - run: sudo apt-get update
+      - run: sudo apt-get install google-chrome-stable
+
+      - run: docker build -t app .
+      #- run: docker run -d --name app -p 5000:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
+      - run: echo $DOCKER_HOST
+      - run:
+          name: Start container and verify it's working
+          command: |
+            set -x
+            sudo docker-compose up -d -e DOCKER_HOST=$DOCKER_HOST --force-recreate --build
+
+      - run: sudo pip install -r requirements.txt
+      - run: export DISPLAY=:99.0
+      - run: sleep 15
+      - run: sudo netstat -ltnp
+      - run: docker ps -a
+      - run: curl http://localhost:5000
+      - run: google-chrome --version
+      - run: /usr/local/bin/chromedriver --version
+      - run: /usr/bin/google-chrome-stable --version
+      - run: python seltest.py
