@@ -19,7 +19,7 @@ jobs:
       - run: sudo apt-get update
       - run: sudo apt-get install google-chrome-stable
 
-      #- run: docker build -t app .
+      - run: docker build -t app .
       #- run: docker run -d --name app -p 5000:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
       - run: echo $DOCKER_HOST
       - run:
