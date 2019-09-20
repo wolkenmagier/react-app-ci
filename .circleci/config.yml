@@ -13,8 +13,9 @@ jobs:
       - run: sudo chmod +x /usr/local/share/chromedriver
       - run: sudo rm /usr/local/bin/chromedriver
       - run: sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
-      - run: sudo wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-      - run: sudo sudo dpkg -i google-chrome-stable_current_amd64.deb
+      - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - run: sudo apt-get install -f
+      - run: sudo dpkg -i google-chrome-stable_current_amd64.deb
       - run: docker build -t app .
       - run: docker run -d --name app -p 8080:5000 -e REACT_APP_ENVIRONMENT=docker -e REACT_APP_TIMEZONE=America/Pacific app
       - run: docker ps -a
