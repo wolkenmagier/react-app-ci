@@ -7,7 +7,7 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
-      - run: ~/chromedriver_linux64.zip -d ~/
+      - run: unzip ~/chromedriver_linux64.zip -d ~/
       - run: rm ~/chromedriver_linux64.zip
       - run: sudo mv -f ~/chromedriver /usr/local/share/
       - run: sudo chmod +x /usr/local/share/chromedriver
