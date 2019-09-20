@@ -7,3 +7,22 @@ jobs:
         - checkout
         # Maybe you need to add some config file specific to circle…
         - run: docker-compose up -d
+        - run: wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
+        - run: unzip ~/chromedriver_linux64.zip -d ~/
+        - run: rm ~/chromedriver_linux64.zip
+        - run: sudo mv -f ~/chromedriver /usr/local/share/
+        - run: sudo chmod +x /usr/local/share/chromedriver
+        - run: sudo rm /usr/local/bin/chromedriver
+        - run: sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
+        - run: sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+        - run: sudo sh -c 'echo ""deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"" >> /etc/apt/sources.list.d/google-chrome.list'
+        - run: sudo apt-get update
+        - run: sudo apt-get install google-chrome-stable
+
+        - run: docker ps -a
+        - run: export DISPLAY=:99.0
+        - run: sudo netstat -ltnp
+
+        - run: /usr/local/bin/chromedriver --version
+        - run: /usr/bin/google-chrome-stable --version
