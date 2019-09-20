@@ -14,3 +14,5 @@ jobs:
       - run: sleep 15
       - run: python seltest.py
       - run: google-chrome --version
+      - run: /usr/local/bin/chromedriver --version
+      - run: /usr/bin/google-chrome-stable --version
