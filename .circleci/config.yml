@@ -14,6 +14,7 @@ jobs:
       - run: sudo rm /usr/local/bin/chromedriver
       - run: sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
       - run: wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+      - run: sudo dpkg -i google-chrome-stable_current_amd64.deb
       - run: sudo apt-get install -f
       - run: sudo dpkg -i google-chrome-stable_current_amd64.deb
       - run: docker build -t app .
