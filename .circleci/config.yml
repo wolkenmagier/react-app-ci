@@ -13,3 +13,4 @@ jobs:
       - run: export DISPLAY=:99.0
       - run: sleep 15
       - run: python seltest.py
+      - run: google-chrome --version
