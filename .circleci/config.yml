@@ -35,9 +35,9 @@ jobs:
         - run: sudo apt-get install python3-dev libffi-dev libssl-dev
         - run: sudo apt-get install python3-pip
         - run: sudo pip3 install -r requirements.txt
-        - run: pip3 show selenium
-        - run: pip3 list
-        - run: pyenv local 3.6.5
-        - run: python3 --version
+        - run: sudo pip3 show selenium
+        - run: sudo pip3 list
+        - run: sudo pyenv local 3.6.5
+        - run: sudo python3 --version
 
-        - run: python3 seltest.py
+        - run: sudo python3 seltest.py
