@@ -26,7 +26,7 @@ jobs:
         - run: sudo netstat -ltnp
 
         - run: /usr/local/bin/chromedriver --version
-        - run: /usr/bin/google-chrome-stable --version
+        - run: /usr/bin/google-chrome --version
         - run: curl http://localhost:8080
         - run: python --version
         - run: sudo bash -c "yes | add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && apt-get install -y python3.6"
