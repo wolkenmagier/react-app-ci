@@ -13,6 +13,13 @@ from selenium.webdriver.common.keys import Keys
 # For providing custom configurations for Chrome to run
 from selenium.webdriver.chrome.options import Options
 
+import requests
+
+from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.common.by import By
+
+from selenium.webdriver.support.ui import WebDriverWait
 
 # --------------------------------------
 # Provide a class for the unit test case
@@ -36,7 +43,9 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		# Add the mobile emulation to the chrome options variable
 		chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
 		chrome_options.add_argument('--headless')
-
+		chrome_options.add_argument('--no-sandbox')
+		chrome_options.add_argument('--disable-dev-shm-usage')
+		
 		# Create driver, pass it the path to the chromedriver file and the special configurations you want to run
 		self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=chrome_options)
 
@@ -49,7 +58,10 @@ class PythonOrgSearchChrome(unittest.TestCase):
 
 		driver.get('http://localhost:8080')
 		driver.implicitly_wait(30)
-		text = driver.find_element_by_id("sample-item").text
+		elem = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, '//*[@id=\"sample-item\"]'))
+            )
+		text = elem.text
 		
 		print("Text:",text)
 		self.assertEqual("text in the item", text)
@@ -61,6 +73,7 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		# Close the browser. 
 		# Note close() will close the current tab, if its the last tab it will close the browser. To close the browser entirely use quit()
 		self.driver.close()
+
 
 # Boilerplate code to start the unit tests
 if __name__ == "__main__":

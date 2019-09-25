@@ -1,0 +1,43 @@
+version: 2 # CircleCI version
+jobs:
+  build:
+    machine:
+      image: ubuntu-1604:201903-01
+    working_directory: ~/repo # Default working directory, where your project will be cloned
+    steps:
+        - checkout
+        # Maybe you need to add some config file specific to circle…
+        - run: docker-compose up -d
+        - run: wget -N https://chromedriver.storage.googleapis.com/77.0.3865.40/chromedriver_linux64.zip -P ~/
+        - run: unzip ~/chromedriver_linux64.zip -d ~/
+        - run: rm ~/chromedriver_linux64.zip
+        - run: sudo mv -f ~/chromedriver /usr/local/share/
+        - run: sudo chmod +x /usr/local/share/chromedriver
+        - run: sudo rm /usr/local/bin/chromedriver
+        - run: sudo ln -s /usr/local/share/chromedriver /usr/local/bin/chromedriver
+
+        - run: sudo wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+        - run: sudo sh -c 'echo ""deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main"" >> /etc/apt/sources.list.d/google-chrome.list'
+        - run: sudo apt-get update
+        - run: sudo apt-get install google-chrome-stable
+
+        - run: docker ps -a
+        - run: export DISPLAY=:99.0
+        - run: sudo netstat -ltnp
+
+        - run: /usr/local/bin/chromedriver --version
+        - run: /usr/bin/google-chrome --version
+        - run: curl http://localhost:8080
+        - run: python --version
+        - run: sudo bash -c "yes | add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && apt-get install -y python3.6"
+        #- run: python3.7.0 --version
+        #- run: sudo pip install -r requirements.txt
+        - run: sudo apt-get install python3-dev libffi-dev libssl-dev
+        - run: sudo apt-get install python3-pip
+        - run: sudo pip3 install -r requirements.txt
+        - run: sudo pip3 show selenium
+        - run: sudo pip3 list
+        #- run: pyenv local 3.5
+        - run: sudo python3 --version
+
+        - run: sudo python3 seltest.py

@@ -27,6 +27,8 @@ before_install: # Install ChromeDriver (64bits; replace 64 with 32 for 32bits).
   - sh -e /etc/init.d/xvfb start
   - sleep 15 # give xvfb some time to start
 
+
+
 script:
   - whereis google-chrome-stable
   - whereis chromedriver
