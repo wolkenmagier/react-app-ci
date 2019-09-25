@@ -64,7 +64,7 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		text = elem.text
 		
 		print("Text:",text)
-		self.assertEqual("text in the item-fault", text)
+		self.assertEqual("text in the item", text)
 
 
 		# Take a screenshot of the results
