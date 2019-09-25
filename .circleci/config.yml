@@ -35,4 +35,4 @@ jobs:
         - run: sudo apt-get install python3-dev libffi-dev libssl-dev
         - run: sudo apt-get install python3-pip
         - run: sudo pip3 install -r requirements.txt
-        - run: python3.6 seltest.py
+        - run: python3 seltest.py
