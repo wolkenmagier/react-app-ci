@@ -43,7 +43,9 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		# Add the mobile emulation to the chrome options variable
 		chrome_options.add_experimental_option("mobileEmulation", mobile_emulation)
 		chrome_options.add_argument('--headless')
-
+		chrome_options.add_argument('--no-sandbox')
+		chrome_options.add_argument('--disable-dev-shm-usage')
+		
 		# Create driver, pass it the path to the chromedriver file and the special configurations you want to run
 		self.driver = webdriver.Chrome(executable_path='/usr/local/bin/chromedriver', chrome_options=chrome_options)
 
