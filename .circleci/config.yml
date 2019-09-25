@@ -37,7 +37,7 @@ jobs:
         - run: sudo pip3 install -r requirements.txt
         - run: sudo pip3 show selenium
         - run: sudo pip3 list
-        - run: sudo pyenv local 3.6.5
+        - run: pyenv local 3.5
         - run: sudo python3 --version
 
         - run: sudo python3 seltest.py
