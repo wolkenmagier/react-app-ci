@@ -74,6 +74,7 @@ class PythonOrgSearchChrome(unittest.TestCase):
 		# Note close() will close the current tab, if its the last tab it will close the browser. To close the browser entirely use quit()
 		self.driver.close()
 
+
 # Boilerplate code to start the unit tests
 if __name__ == "__main__":
 	unittest.main()
